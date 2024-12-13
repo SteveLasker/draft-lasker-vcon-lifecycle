@@ -1,3 +1,7 @@
+<!--
+**EDITORS NOTE**: It's not yet been decided if this will be submitted as a normative or informative RFC, or maintained as community document.
+Until it's been decided to submit as an RFC, the RFC template is used, even though the document uses images that would not be supported in a submitted RFC, with other RFC sections commented out.
+
 ---
 title: "draft-lasker-vcon-lifecycle"
 category: info
@@ -37,22 +41,22 @@ normative:
 informative:
 
 --- abstract
+-->
 
-vCons are powerful means to capture and collaborate on the details of a conversation, enabling entities to more accurately respond to customer needs, and entities to more effectively manage the health of their business.
-vCons contain multiple elements of Personally Identifiable Information of the parties involved, including phone numbers, emails, voice and facial prints to location information.
-These elements are what make vCons so powerful to assist customers.
-However, the information must be handled responsibly, giving the involved parties an opportunity to consent to their information being captured, and the ability to revoke consent with the right to be forgotten.
-Multiple regulations, including the US born California Consumer Protection Act (CCPA) and the EU born General Data Protection Regulation (GDPR) outline requirements for entities to responsibly use and dispose of PII information upon request.
-This draft provides an overview of the requirements and a workflow to onboard customers with end-to-end, interoperable services and tooling.
-
+<!--
 --- middle
+-->
 
 # Introduction
 
-TODO Introduction
+vCons are powerful means to capture and collaborate on the details of a conversation, enabling entities to more accurately respond to customer needs, and entities to more effectively manage the health of their business.
 
-**EDITORS NOTE**: It's not yet been decided if this will be submitted as a normative or informative RFC, or maintained as community document.
-Until it's been decided to submit as an RFC, the RFC template is used, even though the document uses images that would not be supported in a submitted RFC.
+vCons contain multiple elements of Personally Identifiable Information of the parties involved, including phone numbers, emails, voice and facial prints to location information.
+These elements are what make vCons so powerful to assist customers.
+However, the information must be handled responsibly, giving the involved parties an opportunity to consent to their information being captured, and the ability to revoke consent with the right to be forgotten.
+
+Multiple regulations, including the US born California Consumer Protection Act (CCPA) and the EU born General Data Protection Regulation (GDPR) outline requirements for entities to responsibly use and dispose of PII information upon request.
+This draft provides an overview of the requirements and a workflow to onboard customers with end-to-end, interoperable services and tooling.
 
 # Conventions and Definitions
 
@@ -70,7 +74,9 @@ The following terms are from {{-vcon-privacy}}, defining the three key roles in 
 - **Party**: A party, or participant of a vCon, as identified in the vCon draft.
 - **Entity**: A generic reference to companies, groups or individuals that may share, alter, consume a vCon. An entity may be a Data Recorder, Data Controller, Data Processor or some other role that has not yet been defined that participates in the possession and/or processing of a vCon.
 
+<!--
 {::boilerplate bcp14-tagged}
+-->
 
 # vCon Lifecycle
 
@@ -212,6 +218,8 @@ vCons represent several elements, which contain rich privacy information, or lar
 For reasons of privacy, conformance to governance, or cost efficiency of storage, vCon elements may be individually stored as blobs.
 A vCon Manifest references the blobs, enabling the sharing of a subset of a vCon, while still integrity protecting the contents.
 
+<!--
+
 # Security Considerations
 
 TODO Security
@@ -227,3 +235,4 @@ This document has no IANA actions.
 {:numbered="false"}
 
 TODO acknowledge.
+-->
