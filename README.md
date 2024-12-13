@@ -15,19 +15,28 @@ The following terms are from [draft-james-privacy-primer-vcon][privacy-primer-vc
 
 - **Data Subject**: The individual whose personal information is being processed (also referred to as “consumer” in this RFC and many personal data privacy laws).
 - **Data Controller**: An organization or individual with decision-making authority over data processing who determines the purposes and methods of data processing, bears primary responsibility under privacy laws and is the main target of most privacy and data protection regulations.
-- **Data Processor**: Often a third-party service provider who processes data on behalf of the data controller. Under Health Insurance Portability and Accountability Act (HIPAA), data processors are referred to as "business associates." Data processors may be hired for specialized tasks or to improve efficiency; can subcontract to other processors, creating a chain of responsibility; must operate within the scope defined by the data controller; and are expected to maintain trust and adhere to the controller's guidelines.
+- **Data Processor**: Often a third-party service provider who processes data on behalf of the data controller.
+Under Health Insurance Portability and Accountability Act (HIPAA), data processors are referred to as "business associates." Data processors may be hired for specialized tasks or to improve efficiency; can subcontract to other processors, creating a chain of responsibility; must operate within the scope defined by the data controller; and are expected to maintain trust and adhere to the controller's guidelines.
 
 ## Additional terms for the purpose of processing a vCon include
 
-- **Data Recorder**: The organization that records and initiates the vCon, identifying the parties, including the media of the conversation. For a phone call, this may include the phone numbers and the audio recording. For internet-based calls, such as Microsoft Teams, Zoom, Google meet, this may include emails and audio/video recording. The data recorder is a facilitator with access to the content of the call. The Data Recorder is not responsible for gaining consent, as they are providing infrastructure. One or all of the Data Subjects must initiate consent, giving the Data Recorder the right to record the conversation.
-- **Conserver**: A vCon workflow engine that ingests vCons, routing them for processing and enhancements. A conserver doesn’t store a vCon, rather processes it real-time, retrieving it from, and saving it to a vCon Registry
+- **Data Recorder**: The organization that records and initiates the vCon, identifying the parties, including the media of the conversation.
+For a phone call, this may include the phone numbers and the audio recording.
+For internet-based calls, such as Microsoft Teams, Zoom, Google meet, this may include emails and audio/video recording.
+The data recorder is a facilitator with access to the content of the call.
+The Data Recorder is not responsible for gaining consent, as they are providing infrastructure.
+One or all of the Data Subjects must initiate consent, giving the Data Recorder the right to record the conversation.
+- **Conserver**: A vCon workflow engine that ingests vCons, routing them for processing and enhancements.
+A conserver doesn’t store a vCon, rather processes it real-time, retrieving it from, and saving it to a vCon Registry
 - **vCon Registy**: A storage service, capable of storing vCons, including rich metadata and larger attachments including audio and video recordings.
 - **Party**: A party, or participant of a vCon, as identified in the vCon draft.
-- **Entity**: A generic reference to companies, groups or individuals that may share, alter, consume a vCon. An entity may be a Data Recorder, Data Controller, Data Processor or some other role that has not yet been defined that participates in the possession and/or processing of a vCon.
+- **Entity**: A generic reference to companies, groups or individuals that may share, alter, consume a vCon.
+An entity may be a Data Recorder, Data Controller, Data Processor or some other role that has not yet been defined that participates in the possession and/or processing of a vCon.
 
 ## vCon Lifecycle
 
-vCons have a lifecycle from creation with consent, processing, enhancements, to revocation and deletion. The workflow involves a vCon moving across multiple companies and network boundaries, often fanning out in 1:many relationships of sharing.
+vCons have a lifecycle from creation with consent, processing, enhancements, to revocation and deletion.
+The workflow involves a vCon moving across multiple companies and network boundaries, often fanning out in 1:many relationships of sharing.
 An entity that creates or consumes vCons will have several components to their vCon services:
 
 - **Conserver**: A vCon workflow engine that ingests vCons, routing them for processing and enhancements.
@@ -138,7 +147,8 @@ The following are some examples for the lifecycle of a vCon, how it may be creat
 
 ## What Differentiates SCITT from a Database
 
-The information written to SCITT could be compared to information written in a standard database. So, what makes SCITT different?
+The information written to SCITT could be compared to information written in a standard database.
+So, what makes SCITT different?
 
 To be elaborated upon:
 
@@ -153,7 +163,8 @@ To be elaborated upon:
 - What makes SCITT different from an immutable database?
 - What makes SCITT different from Blockchain Technology?
 - Are different ledger formats supported? 
-  - Yes – Datatrails implements a Merkle Mountain Range implementation, providing performance, scale and the ability to purge older information reducing storage, while maintaining the overall integrity protection. Other implementations like Microsoft CCF or RFC 9162 provide alternative formats. 
+  - Yes – Datatrails implements a Merkle Mountain Range implementation, providing performance, scale and the ability to purge older information reducing storage, while maintaining the overall integrity protection.
+Other implementations like Microsoft CCF or RFC 9162 provide alternative formats.
 
 ## Appendix
 
