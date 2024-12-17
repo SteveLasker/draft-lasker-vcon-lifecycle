@@ -56,7 +56,8 @@ An entity that creates or consumes vCons will have several components to their v
 1. **Consent to Share**: The call completes, confirming consent for the recording to be used to followup the lead, noting the data subject can review and revoke consent at a further date.
    The Data Subject is asked for where to send the consent confirmation message, providing more context to the initiating caller, and value to the data subject who know can confirm their consent was processed.
 1. **vCon Created**: The vCon is created, recording the metadata of the call to the vCon Registry
-1. **Recording Added**: initially processed, where the recording is saved to the vCon Registry, and the v
+1. **Recording Added**: The recording is saved to the vCon Registry, adding the recording to attachments.
+
 ## Revocation and the Right to Be Forgotten
 
 At any point, a Data Subject can request revocation, and/or the right to be forgotten, requiring all possessors of the vCon to act on the Data Subjects wishes.
