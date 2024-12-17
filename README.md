@@ -7,7 +7,9 @@ These elements are what make vCons so powerful to assist customers.
 However, the information must be handled responsibly, giving the involved parties an opportunity to consent to their information being captured, and the ability to revoke consent with the right to be forgotten.
 
 Multiple regulations, including the US born [California Consumer Protection Act (CCPA)][CCPA] and the EU born [General Data Protection Regulation (GDPR)][GDPR] outline requirements for entities to responsibly use and dispose of PII information upon request.
+
 This draft provides an overview of the requirements and a workflow to onboard customers with end-to-end, interoperable services and tooling.
+The workflow enables entities in the workflow to be collaborate on a vCon, while assuring all entities in the workflow are adhering to relevant PII regulations.
 
 ## Conventions and Definitions
 
@@ -18,7 +20,9 @@ The following terms are from [draft-james-privacy-primer-vcon][privacy-primer-vc
 - **Data Processor**: Often a third-party service provider who processes data on behalf of the data controller.
 Under Health Insurance Portability and Accountability Act (HIPAA), data processors are referred to as "business associates." Data processors may be hired for specialized tasks or to improve efficiency; can subcontract to other processors, creating a chain of responsibility; must operate within the scope defined by the data controller; and are expected to maintain trust and adhere to the controller's guidelines.
 
-## Additional terms for the purpose of processing a vCon include
+### Additional Terms
+
+For the purposes of processing a vCon, the following additional terms are used:
 
 - **Data Recorder**: The organization that records and initiates the vCon, identifying the parties, including the media of the conversation.
 For a phone call, this may include the phone numbers and the audio recording.
@@ -32,18 +36,13 @@ A conserver doesn’t store a vCon, rather processes it real-time, retrieving it
 - **Party**: A party, or participant of a vCon, as identified in the vCon draft.
 - **Entity**: A generic reference to companies, groups or individuals that may share, alter, consume a vCon.
 An entity may be a Data Recorder, Data Controller, Data Processor or some other role that has not yet been defined that participates in the possession and/or processing of a vCon.
+- **SCITT Transparency Service**: An append-only ledger for integrity protecting vCons, ensuring the state of a vCon is known at a point in time for conformance to governance and regulatory requirements.
 
 ## vCon Lifecycle
 
 vCons have a lifecycle from creation with consent, processing, enhancements, to revocation and deletion.
 The workflow involves a vCon moving across multiple companies and network boundaries, often fanning out in 1:many relationships of sharing.
 An entity that creates or consumes vCons will have several components to their vCon services:
-
-- **Conserver**: A vCon workflow engine that ingests vCons, routing them for processing and enhancements.
-A conserver doesn’t store a vCon, rather processes it, retrieving it from, and saving it to a vCon Registry
-- **vCon Registy**: A storage service, capable of storing vCons, including rich metadata and larger attachments including audio and video recordings.
-A vCon registry manages the de-duplication of shared elements of a vCon.
-- **SCITT Transparency Service**: An append-only ledger for integrity protecting vCons, ensuring the state of a vCon is known at a point in time for conformance to governance and regulatory requirements.
 
 <img src="./media/vcon-lifecycle.svg" alt="vCon Lifecycle" style="height: 300px;"/>
 
