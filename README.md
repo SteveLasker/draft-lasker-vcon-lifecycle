@@ -44,12 +44,19 @@ vCons have a lifecycle from creation with consent, processing, enhancements, to 
 The workflow involves a vCon moving across multiple companies and network boundaries, often fanning out in 1:many relationships of sharing.
 An entity that creates or consumes vCons will have several components to their vCon services:
 
+### vCon Create, Consent and Share
+
 <img src="./media/vcon-lifecycle.svg" alt="vCon Lifecycle" style="height: 300px;"/>
 
-### Cloud and OnPrem services
-
-While each entity of a workflow will want and need to manage their own instances of the vCon Services, the services are likely cloud-hosted SaaS, assuring the entity maintains their core business focus.
-
+1. **Initiating Call**: An initiating caller contacts a Data Subject to sell an product.
+1. **Consent to Record**: The initiating caller requests consent to record the call for sales followup.
+   1. Does the full "purpose" of the call need to be confirmed at the beginning of the call, which may likely prompt the data subject to hang up?
+   1. Can the initiating caller ask for consent to record for training purposes, then at the end, if the data subject appears to be interested, ask for the recording to be used for sales followup?
+   1. This would establish the call is being recorded, but reserved purpose until the end of the call when it's known if the call is for "training a failed sales lead", or sales followup when the data subject has interest?
+1. **Consent to Share**: The call completes, confirming consent for the recording to be used to followup the lead, noting the data subject can review and revoke consent at a further date.
+   The Data Subject is asked for where to send the consent confirmation message, providing more context to the initiating caller, and value to the data subject who know can confirm their consent was processed.
+1. **vCon Created**: The vCon is created, recording the metadata of the call to the vCon Registry
+1. **Recording Added**: initially processed, where the recording is saved to the vCon Registry, and the v
 ## Revocation and the Right to Be Forgotten
 
 At any point, a Data Subject can request revocation, and/or the right to be forgotten, requiring all possessors of the vCon to act on the Data Subjects wishes.
@@ -167,6 +174,10 @@ Other implementations like Microsoft CCF or RFC 9162 provide alternative formats
 
 ## Appendix
 
+### Cloud and OnPrem services
+
+While each entity of a workflow will want and need to manage their own instances of the vCon Services, the services are likely cloud-hosted SaaS, assuring the entity maintains their core business focus.
+
 ### Open Items
 
 #### vCon Manifests
@@ -174,6 +185,8 @@ Other implementations like Microsoft CCF or RFC 9162 provide alternative formats
 vCons represent several elements, which contain rich privacy information, or large formats.
 For reasons of privacy, conformance to governance, or cost efficiency of storage, vCon elements may be individually stored as blobs.
 A vCon Manifest references the blobs, enabling the sharing of a subset of a vCon, while still integrity protecting the contents.
+
+
 
 [CCPA]:                 https://oag.ca.gov/privacy/ccpa
 [GDPR]:                 https://gdpr.eu/
