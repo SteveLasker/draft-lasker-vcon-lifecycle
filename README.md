@@ -24,18 +24,18 @@ Under Health Insurance Portability and Accountability Act (HIPAA), data processo
 
 For the purposes of processing a vCon, the following additional terms are used:
 
-- **Data Recorder**: The organization that records and initiates the vCon, identifying the parties, including the media of the conversation.
+- **Data Originator**: The organization that records and initiates the vCon, identifying the parties, including the media of the conversation.
 For a phone call, this may include the phone numbers and the audio recording.
 For internet-based calls, such as Microsoft Teams, Zoom, Google meet, this may include emails and audio/video recording.
-The data recorder is a facilitator with access to the content of the call.
-The Data Recorder is not responsible for gaining consent, as they are providing infrastructure.
-One or all of the Data Subjects must initiate consent, giving the Data Recorder the right to record the conversation.
+The Data Originator is a facilitator with access to the content of the call.
+The Data Originator is not responsible for gaining consent, as they are providing infrastructure.
+One or all of the Data Subjects must initiate consent, giving the Data Originator the right to record the conversation.
 - **Conserver**: A vCon workflow engine that ingests vCons, routing them for processing and enhancements.
 A conserver doesn’t store a vCon, rather processes it real-time, retrieving it from, and saving it to a vCon Registry
 - **vCon Registy**: A storage service, capable of storing vCons, including rich metadata and larger attachments including audio and video recordings.
 - **Party**: A party, or participant of a vCon, as identified in the vCon draft.
 - **Entity**: A generic reference to companies, groups or individuals that may share, alter, consume a vCon.
-An entity may be a Data Recorder, Data Controller, Data Processor or some other role that has not yet been defined that participates in the possession and/or processing of a vCon.
+An entity may be a Data Originator, Data Controller, Data Processor or some other role that has not yet been defined that participates in the possession and/or processing of a vCon.
 - **SCITT Transparency Service**: An append-only ledger for integrity protecting vCons, ensuring the state of a vCon is known at a point in time for conformance to governance and regulatory requirements.
 
 ## vCon Lifecycle Events
@@ -71,7 +71,7 @@ A vCon may be shared with multiple entity.
 To assure a chain of custody, knowing where a vCon was shared, the sending party must record who, when and how a vCon was shared with a receiving party, and if the receiving party accepted receipt.
 - `vcon_consent_accepted:` One or more of the parties have given consent to the vCon being recorded and shared for its intended purpose.
 Vcon_consent_accepted may not be set in the initial creation of the vCon, as it’s the responsibility of the Data Controller to manage the consent.
-A Data Recorder provides infrastructure for the recording, and may not be responsible for tracking the consent of the parties.
+A Data Originator provides infrastructure for the recording, and may not be responsible for tracking the consent of the parties.
 As a result, a vCon may be created and shared across network boundaries and companies before the Data Controller has the opportunity to amend the vCon with who and how consent was given.
 - `vcon_consent_revoked:` One or more parties have revoked their consent for one or more purposes.
 Depending on the license and regulatory compliance associated with the vCon, one revocation of consent may require all data processors to act upon the revocation.
@@ -103,34 +103,34 @@ An entity that creates or consumes vCons will have several components to their v
 
 <img src="./media/vcon-lifecycle.svg" alt="vCon Lifecycle" style="height: 300px;"/>
 
-#### Data Recorder
+#### Data Originator
 
 1. **Initiating Call**: An initiating caller contacts a Data Subject to provide a service.
 1. **Consent to Record**: The initiating caller requests consent to record the call for training purposes.
     1. Does the full "purpose" of the call need to be confirmed at the beginning of the call, which may likely prompt the data subject to hang up?
     1. Can the initiating caller ask for consent to record for training purposes, then at the end, if the data subject appears to be interested, ask for the recording to be used for sales followup ("purpose-sales")?
     1. This would establish the call is being recorded, but reserved the "purpose" until the end of the call when it's known if the call is for "training" an "unsuccessful sales lead", or successful "sales" followup when the data subject has expressed interest?
-    1. While the Data Recorder performs the infrastructure for the initial creation of the vCon, they may not be accountable for recording the decision of consent for the data subject.  
-    _**Note:** This does raise a question if a Data Recorder can share a vCon with a Data Controller and Data Processor until consent is known.
-Does a contractual relationship, providing infrastructure between the Data Recorder, Data Controller and Data Processor(s) give a timeline by which consent can be confirmed, or the vCon must be deleted?_
+    1. While the Data Originator performs the infrastructure for the initial creation of the vCon, they may not be accountable for recording the decision of consent for the data subject.  
+    _**Note:** This does raise a question if a Data Originator can share a vCon with a Data Controller and Data Processor until consent is known.
+Does a contractual relationship, providing infrastructure between the Data Originator, Data Controller and Data Processor(s) give a timeline by which consent can be confirmed, or the vCon must be deleted?_
 1. **Consent to Share**: The call completes, confirming consent for the recording to be used for "sales followup", noting the data subject can review and revoke consent at a further date.
 Using a well-known script to the Data Processor, the Data Subject is asked for where to send the consent confirmation message, providing more context to the initiating caller, and value to the Data Subject who know can confirm their consent was acknowledged.
 1. **vCon Created**: The call completes, the vCon is created, recording the metadata of the call to the vCon Registry.
-To create a baseline, the Data Recorder may write to their SCITT Ledger the initial `vcon_created` operation, providing a means for other asynchronous operations to record additional integrity protected events.
+To create a baseline, the Data Originator may write to their SCITT Ledger the initial `vcon_created` operation, providing a means for other asynchronous operations to record additional integrity protected events.
 1. **Recording Added**: The recording is saved to the vCon Registry, adding the recording to attachments section of the vCon.
-1. **vCon Shared**: The Data Recorder has completed their responsibilities and now shares the vCon with the Data Controller.
+1. **vCon Shared**: The Data Originator has completed their responsibilities and now shares the vCon with the Data Controller.
 As the vCon is traversing an entity and network boundary, the vCon is integrity protected by writing to a SCITT Transparency Service with a `vcon_shared` operation.
 The SCITT Receipt is attached to the vCon as it's shared with each Data Controller.
 
 #### Data Controller
 
-1. **vCon Received**: The vCon is received from the Data Recorder, recording a `vcon_received` operation, in the SCITT Transparency Service.
+1. **vCon Received**: The vCon is received from the Data Originator, recording a `vcon_received` operation, in the SCITT Transparency Service.
 The Data Controller can attest to the integrity of what was received, with the ability to verify the receipt that has been shared and stored in their vCon Registry.  
-_Note: All relevant information of the vCon is copied to the Data Controllers vCon Registry, eliminating any dependencies on the Data Recorder._
+_Note: All relevant information of the vCon is copied to the Data Controllers vCon Registry, eliminating any dependencies on the Data Originator._
 1. **vCon Enhanced with the License and Data Controller**: The Data Controller adds a transcription, the intended license and sets themselves as the Data Controller on the vCon.
 Adding the license and identifying the Data Controller provides irrefutable knowledge to downstream consumers the license requirements and who is the legal Data Controller for this vCon.
 1. **vCon Shared**: The Data Controller now shares the vCon with the Data Processor(s).
-Similar to the Data Recorder, the Data Processor integrity protects the vCon, and records who the vCon is shared with on the SCITT Transparency Service with a `vcon_shared` operation.
+Similar to the Data Originator, the Data Processor integrity protects the vCon, and records who the vCon is shared with on the SCITT Transparency Service with a `vcon_shared` operation.
 The SCITT Receipt is attached to the vCon as it's shared with each Data Processor.
 The Data Controller records on their SCITT Transparency Service a SCITT Receipt from each Data Processor, confirming each Data Processor received the vCon, with the License and whom to contact for Data Processor requirements.
 
