@@ -38,47 +38,6 @@ A conserver doesn’t store a vCon, rather processes it real-time, retrieving it
 An entity may be a Data Recorder, Data Controller, Data Processor or some other role that has not yet been defined that participates in the possession and/or processing of a vCon.
 - **SCITT Transparency Service**: An append-only ledger for integrity protecting vCons, ensuring the state of a vCon is known at a point in time for conformance to governance and regulatory requirements.
 
-## vCon Lifecycle
-
-vCons have a lifecycle from creation with consent, processing, enhancements, to revocation and deletion.
-The workflow involves a vCon moving across multiple companies and network boundaries, often fanning out in 1:many relationships of sharing.
-An entity that creates or consumes vCons will have several components to their vCon services:
-
-### vCon Create, Consent and Share
-
-<img src="./media/vcon-lifecycle.svg" alt="vCon Lifecycle" style="height: 300px;"/>
-
-1. **Initiating Call**: An initiating caller contacts a Data Subject to sell an product.
-1. **Consent to Record**: The initiating caller requests consent to record the call for sales followup.
-   1. Does the full "purpose" of the call need to be confirmed at the beginning of the call, which may likely prompt the data subject to hang up?
-   1. Can the initiating caller ask for consent to record for training purposes, then at the end, if the data subject appears to be interested, ask for the recording to be used for sales followup?
-   1. This would establish the call is being recorded, but reserved purpose until the end of the call when it's known if the call is for "training a failed sales lead", or sales followup when the data subject has interest?
-1. **Consent to Share**: The call completes, confirming consent for the recording to be used to followup the lead, noting the data subject can review and revoke consent at a further date.
-   The Data Subject is asked for where to send the consent confirmation message, providing more context to the initiating caller, and value to the data subject who know can confirm their consent was processed.
-1. **vCon Created**: The vCon is created, recording the metadata of the call to the vCon Registry
-1. **Recording Added**: The recording is saved to the vCon Registry, adding the recording to attachments.
-
-## Revocation and the Right to Be Forgotten
-
-At any point, a Data Subject can request revocation, and/or the right to be forgotten, requiring all possessors of the vCon to act on the Data Subjects wishes.
-A vCon must be tracked for where it was shared, and who to contact when a Data Subject makes their request.
-The SCITT Transparency Service maintains the metadata for the state of a shared and ingested vCon, assuring the intent of the parties are integrity and inclusion protected.
-
-<img src="./media/vcon-revoke-consent.svg" alt="vCon Lifecycle" style="height: 300px;"/>
-
-## Standards Based Interoperability
-
-The breadth of industries and scenarios that can benefit from virtual conversations spans vast numbers of companies.
-The power in the technology is the ability to collaborate across conversations.
-By implementing a standards-based approach, collaborative and competitive companies can easily integrate with solutions from transcription, consent management, CRM integration.
-
-By packaging the conversation and the associated metadata within a vCon format, the parties have a means to communicate what has been shared.
-
-Due to the personally identifiable information and digital fingerprinting of vCons, it’s just as important to understand and adhere to regulatory requirements for how PII information should be managed.
-Defining and implementing a standard provides stability for how to manage the information and its lifecycle.
-
-Recording what elements of the vCon were shared with various parties holding each party accountable for what was shared, what was received and when it occurred.
-
 ## vCon Lifecycle Events
 
 The following events, or recorded operations outline important “moments that matter”, for the lifecycle events of a vCon.
@@ -101,7 +60,7 @@ Meaning, the previous values exist, but may be superseded with newer values.
 This could include a transcription correction, or the changing of consent.
 The vcon_amended operation should be used when no other specific amended/append statement is available.
 It indicates it’s not the original vCon, but doesn’t have a well-known changed field.
-- `vcon_transcribed:` The vCon was transcribed.
+- `vcon_enhanced:` The vCon _was_(TODO Update with other enhancements) transcribed.
 This may not be an important operation to individually record, as it may be one of many links in a conserver chain.
 - `vcon_shared:` The vCon was shared with an external party.
 This operation seals the integrity of the vCon, proving what was shared, to whom and when.
@@ -132,13 +91,116 @@ An expired vCon is a trigger for why a vCon may be deleted, identifying no speci
 Identifying the future expiration date of a vCon is outside the scope of this operational identification.
 This operation indicates it’s been expired, forcing deletion and communication to shared entities.
 
-## Example vCon Lifecycles
+## Example vCon Lifecycle
 
 The following are some examples for the lifecycle of a vCon, how it may be created, shared, consumed and updated across entities.
 
-### vCon Creation
+vCons have a lifecycle from creation with consent, processing, enhancements, to revocation and deletion.
+The workflow involves a vCon moving across multiple companies and network boundaries, often fanning out in 1:many relationships of sharing.
+An entity that creates or consumes vCons will have several components to their vCon services:
 
-### vCon Consumption
+### vCon Create, Consent and Share
+
+<img src="./media/vcon-lifecycle.svg" alt="vCon Lifecycle" style="height: 300px;"/>
+
+#### Data Recorder
+
+1. **Initiating Call**: An initiating caller contacts a Data Subject to provide a service.
+1. **Consent to Record**: The initiating caller requests consent to record the call for training purposes.
+    1. Does the full "purpose" of the call need to be confirmed at the beginning of the call, which may likely prompt the data subject to hang up?
+    1. Can the initiating caller ask for consent to record for training purposes, then at the end, if the data subject appears to be interested, ask for the recording to be used for sales followup ("purpose-sales")?
+    1. This would establish the call is being recorded, but reserved the "purpose" until the end of the call when it's known if the call is for "training" an "unsuccessful sales lead", or successful "sales" followup when the data subject has expressed interest?
+    1. While the Data Recorder performs the infrastructure for the initial creation of the vCon, they may not be accountable for recording the decision of consent for the data subject.  
+    _**Note:** This does raise a question if a Data Recorder can share a vCon with a Data Controller and Data Processor until consent is known.
+Does a contractual relationship, providing infrastructure between the Data Recorder, Data Controller and Data Processor(s) give a timeline by which consent can be confirmed, or the vCon must be deleted?_
+1. **Consent to Share**: The call completes, confirming consent for the recording to be used for "sales followup", noting the data subject can review and revoke consent at a further date.
+Using a well-known script to the Data Processor, the Data Subject is asked for where to send the consent confirmation message, providing more context to the initiating caller, and value to the Data Subject who know can confirm their consent was acknowledged.
+1. **vCon Created**: The call completes, the vCon is created, recording the metadata of the call to the vCon Registry.
+To create a baseline, the Data Recorder may write to their SCITT Ledger the initial `vcon_created` operation, providing a means for other asynchronous operations to record additional integrity protected events.
+1. **Recording Added**: The recording is saved to the vCon Registry, adding the recording to attachments section of the vCon.
+1. **vCon Shared**: The Data Recorder has completed their responsibilities and now shares the vCon with the Data Controller.
+As the vCon is traversing an entity and network boundary, the vCon is integrity protected by writing to a SCITT Transparency Service with a `vcon_shared` operation.
+The SCITT Receipt is attached to the vCon as it's shared with each Data Controller.
+
+#### Data Controller
+
+1. **vCon Received**: The vCon is received from the Data Recorder, recording a `vcon_received` operation, in the SCITT Transparency Service.
+The Data Controller can attest to the integrity of what was received, with the ability to verify the receipt that has been shared and stored in their vCon Registry.  
+_Note: All relevant information of the vCon is copied to the Data Controllers vCon Registry, eliminating any dependencies on the Data Recorder._
+1. **vCon Enhanced with the License and Data Controller**: The Data Controller adds a transcription, the intended license and sets themselves as the Data Controller on the vCon.
+Adding the license and identifying the Data Controller provides irrefutable knowledge to downstream consumers the license requirements and who is the legal Data Controller for this vCon.
+1. **vCon Shared**: The Data Controller now shares the vCon with the Data Processor(s).
+Similar to the Data Recorder, the Data Processor integrity protects the vCon, and records who the vCon is shared with on the SCITT Transparency Service with a `vcon_shared` operation.
+The SCITT Receipt is attached to the vCon as it's shared with each Data Processor.
+The Data Controller records on their SCITT Transparency Service a SCITT Receipt from each Data Processor, confirming each Data Processor received the vCon, with the License and whom to contact for Data Processor requirements.
+
+#### Data Processor(s)
+
+1. **vCon Received**: The Data Processor validating the vCon SCITT receipt of from the Data Controller, and if proven to be from an Entity they trust, the Data Processor saves the vCon to their vCon Registry and records the inbound vCon to its SCITT Transparency service.
+The transaction completes when the SCITT receipt is returned to the Data Controller, acknowledging they have received the vCon.
+1. **Consent Recorded**: The Data Processor initiated the consent request, and knows what words to parse from the transcription, or knows the timestamp of the recording by which to highlight the consent given by the Data Subject.
+An entry is made to the SCITT Transparency Service, adding `vcon_consent_accepted`, with the relative metadata in the SCITT metamap for how and where consent was confirmed.
+1. **vCon Enhanced**: Sentiment and other vCon enhancements are processed through the Data Processors Conserver workflows.
+1. **Consent Receipt Shared**: The Data Processor has the additional context to use AI, retrieving the contact information from the consent block of the transcribed conversation.
+A notification (sms, email, ...) is sent to the Data Subject(s), with a link to review the consent, purpose and license associated with the vCon.
+The Data Processor records to SCITT, with a `vcon_consent_shared` operation, attesting that consent was shared, the purpose, when and how the Data Subject(s) were contacted.
+1. **Consent Review**: The Data Subject(s) has the option, at any time, to review the (TBD) information within the vCon, with the ability to revoke consent.
+It may be beneficial to record if/when the Data Subjects review the consent as a `vcon_consent_reviewed` operation, but may not be mandatory.
+1. **Data Processor Value-Add**: The Data Processor performs the value added services for the Data Subject(s), which may continue for whatever length of time is allowed within the License associated with the vCon, or until the consent for purpose expires, which is also specified in the vCon License.
+
+### Revocation and the Right to Be Forgotten
+
+At any point, a Data Subject can request revocation, and/or the right to be forgotten, requiring all possessors of the vCon to act on the Data Subjects wishes.
+A vCon must be tracked for where it was shared, and who to contact when a Data Subject makes their request.
+The SCITT Transparency Service maintains the metadata for the state of a shared and ingested vCon, assuring the intent of the parties are integrity and inclusion protected.
+
+<img src="./media/vcon-revoke-consent.svg" alt="vCon Lifecycle" style="height: 300px;"/>
+
+#### Data Subject
+
+1. **Revoke Consent**: At some point, the Data Processor may either complete their value added service, ending the consent for purpose, or the Data Subject(s) can choose to revoke consent for the specific purpose.
+
+    In this scenario, the Data Subject clicks the link, contained in all communications between the Data Processor and the Data Subject(s).
+The link may be hosted by the Data Processor or the Data Controller.
+The Data Subject(s) choose to revoke consent, related to this vCon.
+The intent is recorded on the SCITT Ledger with a `vcon_consent_revoked` operation.
+
+1. **Revoke Request Shared**: If the `vcon_consent_revoked` operation was handled by the Data Processor, they MUST contact the Data Controller, communicating the intent of Data Subject.
+The Data Processor records `vcon_consent_revoked_request` to their SCITT instance, recording the date, time and an identifier for the Data Subject that made the request, and when they contacted the Data Controller.
+The Data Processor records the SCITT Receipt, proving the Data Processor acknowledged receipt of the request.
+
+#### Data Controller Revocation
+
+1. **Act on Consent Revocation Request**: The Data Controller receives the vCon Consent Revocation Request, recording the request on their SCITT Transparency Service.
+Depending on the License and regional requirements for one or multi-party consent, the vCon may be deleted or the Data Subject may be redacted from the vCon.
+1. **Share Revocation Request with Data Controllers**: If the vCon was shared with other data processors, or if the request to revoke consent came direct to the Data Processor, they must share the revocation request (right to be forgotten) with any Data Processor that has not yet acknowledged the request.
+For each Data Processor, the Data Controller records the vCon ID, the Data Processor and when the request was made of the Data Processors.
+Each Data Processor must comply with the request within the time period specified in the License associated with the vCon license attribute.
+
+#### Data Processor Revocation
+
+1. **Deletion of Data**: Closing the loop, any Data Processor that had not yet acted on behalf of the request must acknowledge the request.
+Each Data Processor will record on their SCITT Ledger the vCon and when they acknowledged the request to be forgotten.
+
+#### Acts of Trust and Transparency
+
+Throughout the workflow, no one entity can prove the other entities in the lifecycle of the vCon performed the actions they were required to do.
+However, the entities sharing the vCons and the intent of the Data Subjects can be proven what and when the vCon and the intent was communicated by auditing the SCITT Ledgers of the parties involved.
+
+Through this process, each Entity can prove they acted on the acknowledged consent and intent of the Data Subject, holding the other Entities accountable to performing their required operations.
+
+## Standards Based Interoperability
+
+The breadth of industries and scenarios that can benefit from virtual conversations spans vast numbers of companies.
+The power in the technology is the ability to collaborate across conversations.
+By implementing a standards-based approach, collaborative and competitive companies can easily integrate with solutions from transcription, consent management, CRM integration.
+
+By packaging the conversation and the associated metadata within a vCon format, the parties have a means to communicate what has been shared.
+
+Due to the personally identifiable information and digital fingerprinting of vCons, it’s just as important to understand and adhere to regulatory requirements for how PII information should be managed.
+Defining and implementing a standard provides stability for how to manage the information and its lifecycle.
+
+Recording what elements of the vCon were shared with various parties holding each party accountable for what was shared, what was received and when it occurred.
 
 ### Data Subject Visibility
 
